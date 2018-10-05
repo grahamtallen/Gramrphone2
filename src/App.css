@@ -1,10 +1,4 @@
-.top-bar {
-  display: flex;
-  width: 100%;
-  justify-content: space-around;
-  align-items: center;
-  height: 10vh;
-}
+
 
 .link-btn {
   padding: 10px;
@@ -27,3 +21,5 @@
 .shadow {
   box-shadow:         0px 0px 49px 0px #ccc
 }
+
+
