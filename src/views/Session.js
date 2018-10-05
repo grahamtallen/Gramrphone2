@@ -23,7 +23,7 @@ export default class Session extends Component {
 					<SessionButtons />
 				</div>
 				<div className="footer">
-					<Recorder displaySound={false} />
+					<Recorder displaySound />
 				</div>
 			</div>
 

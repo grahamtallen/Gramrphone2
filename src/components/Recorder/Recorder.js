@@ -20,7 +20,7 @@ export default class Recorder extends Component {
         </div>
         <div className={styles.visualizerWrapper}>
 
-	        <svg className={styles.visualizer} preserveAspectRatio="none" id="visualizer" version="1.1">
+	        <svg className={styles.visualizer} preserveAspectRatio="none" id="visualizer" version="1.1" style={{textAlign: "center"}}>
 	            <defs>
 
 	                <mask id="mask">
@@ -34,7 +34,7 @@ export default class Recorder extends Component {
 	                    <stop offset="100%" style={{stopColor: "#050d61", stopOpacity: 1 }} />
 	                </linearGradient>
 	            </defs>
-	            <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient)" mask="url(#mask)"></rect>
+	            <rect x="0" y="0" width="60vw" height="40vh" fill="url(#gradient)" mask="url(#mask)"></rect>
 	        </svg>
         </div>  
 			<h1></h1>
