@@ -2,7 +2,19 @@ import "./NavBar.css";
 import React from 'react';
 import {capitalize} from '../../utils/strings';
 import Session from '../../views/Session.js'
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import Login from '../../views/Login/Login.js';
+export const fakeAuth = {
+  isAuthenticated: false,
+  authenticate(cb) {
+    this.isAuthenticated = true;
+    setTimeout(cb, 100); // fake async
+  },
+  signout(cb) {
+    this.isAuthenticated = false;
+    setTimeout(cb, 100);
+  }
+};
 
 const About = () => (
   <div>
@@ -47,14 +59,14 @@ export default class NavBar extends React.Component {
 			        }
 		        </div>
 		        <div className="small-screen-nav">
-			        <button className="w3-button" onClick={this.toggleSidebar}>&#9776;</button>
+			        <button className="w3-button hamburger-btn" onClick={this.toggleSidebar}>&#9776;</button>
 					<div className="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" style={{width: "200px", display: sidebarOpen ? "block" : "none"}}>
 					  <button className="w3-bar-item w3-button w3-large w3-hide-large" onClick={this.toggleSidebar} >Close &times;</button>
 					 {
 			        	routes.map((route) => {
 			        		return (
 			        			<div className={`w3-bar-item w3-button link-btn`}>
-			        				<Link to={route.home ? "/" : route.path}>
+			        				<Link to={route.home ? "/" : route.path} onClick={this.toggleSidebar}>
 			        					{capitalize(route.path)}
 			        				</Link>
 		        				</div>
@@ -82,5 +94,14 @@ export const routes = [
 	{
 		path: "chat",
 		component: Topic
+	},
+	{
+		path: "login",
+		component: Login,
+		public: true
 	}
 ]
+
+
+
+

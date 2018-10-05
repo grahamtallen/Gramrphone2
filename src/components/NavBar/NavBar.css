@@ -33,6 +33,10 @@
     white-space: nowrap;
 }
 
+.hamburger-btn {
+	font-size: 20px;
+}
+
 .w3-bar-block.w3-collapse.w3-card.w3-animate-left {
 	left: 0;
 	bottom: 0;

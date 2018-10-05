@@ -1,0 +1,27 @@
+.login-container {
+	display: flex;
+	justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    min-height: 40vh;
+}
+
+.login-container > label {
+    display: flex;
+    flex-direction: column-reverse;
+    font-weight: 700;
+    min-height: 6vh;
+    justify-content: space-between;
+    width: 40vw;
+}
+
+label > input {
+	padding: 5px;
+    display: flex;
+    flex-direction: column-reverse;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    box-shadow: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
