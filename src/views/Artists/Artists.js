@@ -19,8 +19,9 @@ const artists = [
 		name: "The Police",
 		followers: 48209,
 		shows: 248,
-		image: "👮"
-	},
+		image: "👮",
+		isLive: true
+	}
 ]
 
 const allArtists = artists.concat(artists).concat(artists).concat(artists).concat(artists).concat(artists).concat(artists);

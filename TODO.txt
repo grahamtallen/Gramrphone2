@@ -1,1 +1,2 @@
 Make the sidebar close on container click
+Make live artists look different

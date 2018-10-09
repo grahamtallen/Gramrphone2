@@ -21,6 +21,16 @@
 	background-color: blue;
 }
 
+@media (max-width:960px) {
+    .side-column {
+        display: none !important;
+    } 
+    .center-column {
+        width: 100vw !important;
+    } 
+}
+
+
 /* Artist Item */
 
 .artist-item-container {
@@ -28,7 +38,7 @@
     flex-direction: row;
     justify-content: flex-start;
     padding: 2vh 0;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .artist-name {
