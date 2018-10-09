@@ -4,6 +4,7 @@ import {capitalize} from '../../utils/strings';
 import Session from '../../views/Session.js'
 import { Link, Redirect } from 'react-router-dom';
 import Login from '../../views/Login/Login.js';
+import Artists from '../../views/Artists/Artists';
 import { withRouter } from 'react-router';
 
 const isCurrentPage = (route, pathname) => {
@@ -70,12 +71,6 @@ class NavBar extends React.Component {
 }
 
 
-const About = () => (
-  <div>
-    <h2>About</h2>
-  </div>
-)
-
 const Topic = ({ match }) => (
   <div>
     <h3>{match.url}</h3>
@@ -92,7 +87,7 @@ export const routes = [
 	},
 	{
 		path: "artists",
-		component: About
+		component: Artists
 	},
 	{
 		path: "chat",

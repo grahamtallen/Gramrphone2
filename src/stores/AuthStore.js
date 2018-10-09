@@ -2,7 +2,7 @@ import {observable, action} from 'mobx';
 
 class AuthStore {
 
-	@observable isAuthenticated = false;
+	@observable isAuthenticated = true;
 	@observable loading = false;
 
 	@action
