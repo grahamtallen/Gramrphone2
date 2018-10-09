@@ -1,6 +1,6 @@
 import "./Login.css"
 import React from 'react';
-import {fakeAuth} from '../../components/NavBar/NavBar';
+import AuthStore from '../../stores/AuthStore';
 import { Redirect } from 'react-router-dom';
 
 
@@ -9,10 +9,9 @@ export default class Login extends React.Component {
     redirectToReferrer: false
   };
 
-  login = () => {
-    fakeAuth.authenticate(() => {
-      this.setState({ redirectToReferrer: true });
-    });
+  login = async () => {
+    await AuthStore.authenticate();
+    this.setState({ redirectToReferrer: true });
   };
 
   render() {

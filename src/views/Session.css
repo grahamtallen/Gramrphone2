@@ -37,3 +37,13 @@
 	flex-direction: row;
 	align-items: center;
 }
+
+.btn-row > button {
+	border-radius: 15%;
+	background-color: white;
+	font-size: 1vw;
+	width: 4vw;
+	height: 4vh;
+
+
+}
