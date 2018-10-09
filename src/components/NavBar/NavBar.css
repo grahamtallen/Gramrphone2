@@ -22,12 +22,12 @@
 }
 
 .link-btn:hover {
-    background-color: #00a0ff17;
-    border-color: blue;
+    background-color: #00000017;
+    border-color: black;
 }
 
 .link-btn.is-active {
-    background-color: #ff000038 !important;
+    background-color: #00000038 !important;
 }
 
 .link-href {

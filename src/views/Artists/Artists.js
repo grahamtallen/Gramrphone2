@@ -1,6 +1,7 @@
 import "./Artists.css";
 import React, {Component, Fragment} from 'react';
-
+import LiveIndicator from '../../components/LiveIndicator/LiveIndicator'
+import {formatNumber} from 'accounting';
 
 const artists = [
 	{
@@ -36,13 +37,19 @@ const ArtistsColumn = () => {
 const ArtistItem = ({artist}) => {
 	return (
 		<div className="artist-item-container">
-			<div className="artist-img-container">
-				{artist.image}
+			<div className="artist-info">
+				<div className="artist-img-container">
+					<div className="artist-img">{artist.image}</div>
+				</div>
+				<div className="artist-details-container">
+					<div className="artist-name">{artist.name}</div>
+					<div className="artist-followers artist-detail">▶<span>{formatNumber(artist.followers)}</span></div>
+					<div className="artist-shows artist-detail">🎤<span>{formatNumber(artist.shows)}</span></div>
+				</div>
 			</div>
-			<div className="artist-details-container">
-				<div className="artist-name">{artist.name}</div>
-				<div className="artist-followers artist-detail">Followers: <span>{artist.followers}</span></div>
-				<div className="artist-shows artist-detail">Shows <span>{artist.shows}</span></div>
+			<div className="artist-item-buttons">
+				<button className="follow-btn">+</button>
+				{artist.isLive ? <LiveIndicator /> : ""}
 			</div>
 		</div>
 	)
