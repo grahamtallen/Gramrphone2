@@ -47,6 +47,9 @@
     } 
     .small-screen-nav {
         display: flex !important;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
     } 
 }
 
@@ -66,6 +69,7 @@
 
 .hamburger-btn {
 	font-size: 20px;
+  padding-bottom: 10px;
 }
 
 .w3-bar-block.w3-collapse.w3-card.w3-animate-left {

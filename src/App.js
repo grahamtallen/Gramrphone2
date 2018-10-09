@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 import NavBar, {routes} from './components/NavBar/NavBar';
 import AuthStore from './stores/AuthStore'
-
+import UiStore from './stores/UiStore'
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -33,16 +33,18 @@ const App = () => (
   <Router>
     <div>
       <NavBar />
-      {routes.map(route => {
-        if (!route.public) {
+      <div className="routes-wrapper" onClick={UiStore.closeSidebar}>
+        {routes.map(route => {
+          if (!route.public) {
+            return (
+              <PrivateRoute {...route}  path={route.home ? "/" : "/" + route.path} />
+            )
+          }
           return (
-            <PrivateRoute {...route}  path={route.home ? "/" : "/" + route.path} />
+              <Route {...route}  path={route.home ? "/" : "/" + route.path} />
           )
-        }
-        return (
-            <Route {...route}  path={route.home ? "/" : "/" + route.path} />
-        )
-      })}
+        })}
+      </div>
     </div>
   </Router>
 )
