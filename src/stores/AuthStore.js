@@ -11,7 +11,8 @@ class AuthStore {
 			this.loading = true;
 	    	setTimeout(action(() => {
 	    		this.isAuthenticated = true;
-	    		this.loading = false
+	    		this.loading = false;
+	    		resolve();
 	    	}), 1000); // fake async
 		})
 	}	
