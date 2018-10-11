@@ -1,38 +1,50 @@
-import React from 'react'
+import React from 'react';
+import './App.css';
 import {
   BrowserRouter as Router,
   Route,
-  Link
-} from 'react-router-dom'
-import './App.css'
+  Link,
+  Redirect
+} from 'react-router-dom';
+import NavBar, {routes} from './components/NavBar/NavBar';
+import AuthStore from './stores/AuthStore'
+import UiStore from './stores/UiStore'
 
-import Session from './views/Session.js'
-
-const About = () => (
-  <div>
-    <h2>About</h2>
-  </div>
-)
-
-const Topic = ({ match }) => (
-  <div>
-    <h3>{match.url}</h3>
-  </div>
-)
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={props =>
+      AuthStore.isAuthenticated ? (
+        <Component {...props} />
+      ) : (
+        <Redirect
+          to={{
+            pathname: "/login",
+            state: { from: props.location }
+          }}
+        />
+      )
+    }
+  />
+);
 
 
 const App = () => (
   <Router>
     <div>
-      <div className="top-bar">
-        <div className="link-btn"><Link to="/">Session</Link></div>
-        <div className="link-btn"><Link to="/about">Artists</Link></div>
-        <div className="link-btn"><Link to="/topics">Chat</Link></div>
+      <NavBar />
+      <div className="routes-wrapper" onClick={UiStore.closeSidebar}>
+        {routes.map(route => {
+          if (!route.public) {
+            return (
+              <PrivateRoute {...route}  path={route.home ? "/" : "/" + route.path} />
+            )
+          }
+          return (
+              <Route {...route}  path={route.home ? "/" : "/" + route.path} />
+          )
+        })}
       </div>
-
-      <Route exact path="/" component={Session}/>
-      <Route path="/about" component={About}/>
-      <Route path="/topics" component={Topic}/>
     </div>
   </Router>
 )
