@@ -1,6 +1,6 @@
 import './Session.css'
 import React, {Component} from 'react';
-import Recorder from '../components/Recorder/Recorder';
+import Recorder from '../../components/Recorder/Recorder';
 
 
 
