@@ -1,7 +1,7 @@
 import "./NavBar.css";
 import React from 'react';
 import {capitalize} from '../../utils/strings';
-import Session from '../../views/Session.js'
+import Session from '../../views/Session/Session.js'
 import { Link, Redirect } from 'react-router-dom';
 import Login from '../../views/Login/Login.js';
 import Artists from '../../views/Artists/Artists';
