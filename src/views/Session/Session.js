@@ -1,7 +1,11 @@
 import './Session.css'
 import React, {Component} from 'react';
 import Recorder from '../../components/Recorder/Recorder';
+const queryString = require('query-string');
 
+const parseQueryString = (location) =>{
+	return location && queryString.parse(location.search)
+}
 
 
 const SessionButtons = () => {
@@ -16,10 +20,12 @@ const SessionButtons = () => {
 
 export default class Session extends Component {
 	render() {
+		const query = parseQueryString(this.props.location);
+
 		return (
 			<div className='session-container'>
 				<div className="header">
-					You are listening to Chaos Chaos
+					You are listening to {query && query.artistName}
 					<SessionButtons />
 				</div>
 				<div className="footer">

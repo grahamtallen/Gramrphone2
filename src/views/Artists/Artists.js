@@ -1,36 +1,14 @@
 import "./Artists.css";
 import React, {Component, Fragment} from 'react';
+import {observer} from 'mobx-react';
 import LiveIndicator from '../../components/LiveIndicator/LiveIndicator'
 import {formatNumber} from 'accounting';
-
-const artists = [
-	{
-		name: "MonkeyMan",
-		followers: 40,
-		shows: 13,
-		image: "🙉"
-	},
-	{
-		name: "Jeff and the Wingers",
-		followers: 73,
-		shows: 3,
-		image: "👳"
-	},
-	{
-		name: "The Police",
-		followers: 48209,
-		shows: 248,
-		image: "👮",
-		isLive: true
-	}
-]
-
-const allArtists = artists.concat(artists).concat(artists).concat(artists).concat(artists).concat(artists).concat(artists);
-
+import ArtistsStore from '../../stores/ArtistsStore';
+import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 
 const ArtistsColumn = () => {
 	return <Fragment>
-		{allArtists.map(artist => <ArtistItem artist={artist} />)}
+		{ArtistsStore.artists.map(artist => <ArtistItem artist={artist} />)}
 	</Fragment>
 }
 
@@ -55,15 +33,25 @@ const ArtistItem = ({artist}) => {
 	)
 }
 
-
+@observer
 class Artists extends Component {
+
+	componentDidMount() {
+		ArtistsStore.loadArtists();
+	}
+
 	render() {
+		const spinner = (
+			<div className="spinner-wrapper">
+				<LoadingSpinner/> 
+			</div>
+		)
 		return (
 			<div className={`artists-container`}>
 				<div className={`side-column column`}>
 				</div>
 				<div className={`center-column column`}>
-					<ArtistsColumn/>
+					{ArtistsStore.loading ? spinner : <ArtistsColumn/>}
 				</div>
 				<div className={`side-column column`}>
 				</div>

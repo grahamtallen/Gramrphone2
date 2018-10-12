@@ -38,7 +38,7 @@ class NavBar extends React.Component {
 			        {
 			        	routes.map((route) => {
 			        		return (
-			        			<Link className="link-href" to={route.home ? "/" : route.path}>
+			        			<Link className="link-href" to={route.path}>
 				        			<div className={`link-btn wide-screen ${isCurrentPage(route, pathname) && "is-active"} `}>
 				        					{capitalize(route.path)}
 			        				</div>
@@ -57,7 +57,7 @@ class NavBar extends React.Component {
 				        		return (
 				        			<Link 
 				        				className="link-href" 
-				        				to={route.home ? "/" : route.path} 
+				        				to={route.path} 
 			        				>
 					        			<div className={`link-btn ${isCurrentPage(route, pathname) && "is-active"} `}>
 					        					{capitalize(route.path)}

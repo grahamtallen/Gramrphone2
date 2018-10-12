@@ -1,2 +1,2 @@
-Make the sidebar close on container click
-Make live artists look different
+Inject, Provider for mobx stores
+Select Artist functionality
