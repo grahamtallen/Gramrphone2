@@ -39,23 +39,32 @@ export default class Session extends Component {
 				<LoadingSpinner/>
 			</div>
 		)
+		const currentArtist = ArtistsStore.selectedArtist;
 
-		if (!ArtistsStore.selectedArtist) {
+		if (!currentArtist) {
 			return (<div>
 				Please select an artist from the Artists page
 			</div>)
 		}
+
+		let headerMessage;
+		if (currentArtist.isLive) {
+			headerMessage = `You are listening to ${currentArtist.name}`
+		} else {
+			headerMessage = `${currentArtist.name} is not live right now`;
+		}
+		
 		return (
 			<div className='session-container'>
 				<div className="header">
-					You are listening to {ArtistsStore.selectedArtist && ArtistsStore.selectedArtist.name}
+					{headerMessage}
 					<SessionButtons />
 				</div>
 				<div className="footer">
-					<Recorder displaySound={true} />
+					<Recorder displaySound={currentArtist.isLive} />
 				</div>
 				<div className="artist-card">
-					<ArtistItem artist={ArtistsStore.selectedArtist} />
+					<ArtistItem artist={currentArtist} />
 				</div>
 			</div>
 
