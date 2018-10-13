@@ -29,7 +29,8 @@ export const artists = [
 		name: "MonkeyMan",
 		followers: 40,
 		shows: 13,
-		image: "🙉"
+		image: "🙉",
+		isLive: true
 	},
 	{
 		name: "Jeff and the Wingers",

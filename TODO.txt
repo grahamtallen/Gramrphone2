@@ -1,2 +1,1 @@
 Inject, Provider for mobx stores
-Select Artist functionality

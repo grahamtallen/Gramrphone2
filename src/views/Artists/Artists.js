@@ -12,7 +12,7 @@ const ArtistsColumn = () => {
 	</Fragment>
 }
 
-const ArtistItem = ({artist}) => {
+export const ArtistItem = ({artist}) => {
 	return (
 		<div className="artist-item-container">
 			<div className="artist-info">
@@ -27,7 +27,7 @@ const ArtistItem = ({artist}) => {
 			</div>
 			<div className="artist-item-buttons">
 				<button className="follow-btn">+</button>
-				{artist.isLive ? <LiveIndicator /> : ""}
+				{artist.isLive ? <LiveIndicator artist={artist} /> : ""}
 			</div>
 		</div>
 	)
