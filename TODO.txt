@@ -1,3 +1,6 @@
 Inject, Provider for mobx stores
 Make sidebar close on link click
-Not live artist functionality
+firebase security research
+splash page on app.js refactor
+
+what would you like to be called

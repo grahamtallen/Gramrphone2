@@ -25,3 +25,12 @@ label > input {
     border-left: none;
     border-right: none;
 }
+
+.first-loading-spinner-container {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+}

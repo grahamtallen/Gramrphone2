@@ -9,11 +9,14 @@ import {
 import NavBar, {routes} from './components/NavBar/NavBar';
 import AuthStore from './stores/AuthStore'
 import UiStore from './stores/UiStore'
+import {observer} from 'mobx-react';
+import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
+
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
-    render={props =>
+    render={props => 
       AuthStore.isAuthenticated ? (
         <Component {...props} />
       ) : (
@@ -29,24 +32,26 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 );
 
 
-const App = () => (
-  <Router>
-    <div>
-      <NavBar />
-      <div className="routes-wrapper" onClick={UiStore.closeSidebar}>
-        <PrivateRoute {...routes.find(route => route.home)} path={"/"} />
-        {routes.map(route => {
-          if (!route.public) {
+const App = () => {
+  return(
+    <Router>
+      <div>
+        <NavBar />
+        <div className="routes-wrapper" onClick={UiStore.closeSidebar}>
+          <PrivateRoute {...routes.find(route => route.home)} path={"/"} />
+          {routes.map(route => {
+            if (!route.public) {
+              return (
+                <PrivateRoute {...route} default path={"/" + route.path} />
+              )
+            }
             return (
-              <PrivateRoute {...route} default path={"/" + route.path} />
+                <Route {...route}  path={"/" + route.path} />
             )
-          }
-          return (
-              <Route {...route}  path={"/" + route.path} />
-          )
-        })}
+          })}
+        </div>
       </div>
-    </div>
-  </Router>
-)
-export default App
+    </Router>
+  )
+}
+export default observer(App)

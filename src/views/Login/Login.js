@@ -5,13 +5,16 @@ import { Redirect } from 'react-router-dom';
 import {observer} from 'mobx-react';
 import {observable, action, runInAction} from 'mobx';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
-import {createUser} from '../../services/AuthService';
 
 @observer
 export default class Login extends React.Component {
 
+  componentDidMount() {
+    if (!AuthStore.initialLoadCompleted) this.setRedirect();
+  }
+
   @observable redirectToReferrer = false;
-  @observable signingUp = false;
+  @observable signingUp = true;
   @observable email = "";
   @observable password = "";
 
@@ -35,6 +38,14 @@ export default class Login extends React.Component {
   };
 
   render() {
+    console.log('Rendered', AuthStore.initialLoadCompleted)
+    if (!AuthStore.initialLoadCompleted) {
+      return (
+        <div className='first-loading-spinner-container'>
+         <LoadingSpinner />
+        </div>
+      )
+    }
     if (this.signingUp) return <SignUp />
 
     const { from } = this.props.location.state || { from: { pathname: "/" } };
@@ -54,7 +65,7 @@ export default class Login extends React.Component {
   		   Username or Email
     		</label>
         <label>
-    		   <input type="password" name="password" onChange={this.updatePwd} />
+    		   <input type="password" name="password" onChange={this.updatePassword} />
     		   Password
     		</label>
         <div className="bottom-buttons">
@@ -76,6 +87,7 @@ class SignUp extends React.Component {
   @observable email = "";
   @observable pwd = "";
   @observable confirmPwd = "";
+  @observable handle = "";
 
   @action
   updateEmail = (e) => this.email = e.target.value
@@ -83,17 +95,19 @@ class SignUp extends React.Component {
   updatePwd = (e) => this.pwd = e.target.value
   @action
   updateConfirmPwd = (e) => this.confirmPwd = e.target.value
+  @action
+  updateHandle = (e) => this.handle = e.target.value
 
   @action
   signUp = async () => {
     try {
       this.loading = true;
-      const result = await createUser(this.email, this.pwd)
+      console.log('handle: ', this.handle)
+      const result = await AuthStore.createUser(this.email, this.pwd, this.handle)
       runInAction(() => {
         if (result) {
           this.loading = false;
           this.successfullySignedUp = true;
-          console.log("Success! ", result)
         } else {
           this.loading = false;
           this.error = true;
@@ -124,6 +138,10 @@ class SignUp extends React.Component {
         <label>
          <input type="password" name="password" onChange={this.updateConfirmPwd} />
          Confirm Password
+        </label>
+        <label>
+         <input type="text" name="password" onChange={this.updateHandle} />
+         Handle
         </label>
         {this.loading ? <LoadingSpinner/> : signUpButton}
       </div>
