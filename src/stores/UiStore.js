@@ -5,13 +5,11 @@ class UiStore {
 
 	@action
 	toggleSidebar = () => {
-				console.log("toggling sidebar")
 		this.sidebarOpen = !this.sidebarOpen;
 	}
 
 	@action
 	closeSidebar = () => {
-		console.log("closing sidebar")
 		this.sidebarOpen = false;
 	}
 }

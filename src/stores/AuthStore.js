@@ -1,4 +1,5 @@
 import {observable, action} from 'mobx';
+import {signInUser} from '../services/AuthService';
 
 class AuthStore {
 
@@ -6,15 +7,18 @@ class AuthStore {
 	@observable loading = false;
 
 	@action
-	authenticate = () => {
-		return new Promise((resolve, reject) => {
-			this.loading = true;
-	    	setTimeout(action(() => {
-	    		this.isAuthenticated = true;
-	    		this.loading = false;
-	    		resolve();
-	    	}), 1000); // fake async
-		})
+	signInUser = async (email, password) => {
+		this.loading = true;
+		try {
+			console.log(email.password)
+			const result = await signInUser(email, password);
+			this.loading = false;
+			return result
+		} catch (e) {
+			this.loading = false;
+			console.log(e);
+			return false;
+		}
 	}	
 
 	signout(cb) {
