@@ -34,14 +34,15 @@ const App = () => (
     <div>
       <NavBar />
       <div className="routes-wrapper" onClick={UiStore.closeSidebar}>
+        <PrivateRoute {...routes.find(route => route.home)} path={"/"} />
         {routes.map(route => {
           if (!route.public) {
             return (
-              <PrivateRoute {...route}  path={route.home ? "/" : "/" + route.path} />
+              <PrivateRoute {...route} default path={"/" + route.path} />
             )
           }
           return (
-              <Route {...route}  path={route.home ? "/" : "/" + route.path} />
+              <Route {...route}  path={"/" + route.path} />
           )
         })}
       </div>
