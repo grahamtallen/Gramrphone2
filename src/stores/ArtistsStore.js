@@ -30,7 +30,7 @@ export const artists = [
 		followers: 40,
 		shows: 13,
 		image: "🙉",
-		isLive: true
+		isLive: false
 	},
 	{
 		name: "Jeff and the Wingers",
